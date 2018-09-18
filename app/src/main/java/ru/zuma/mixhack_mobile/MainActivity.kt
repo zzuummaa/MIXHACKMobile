@@ -12,7 +12,12 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    val professions = listOf("Программист", "Бухгалтер", "Ген. директор")
+    val professions = arrayOf("Программист", "Бухгалтер", "Ген. директор")
+    val questions = arrayOf(
+            QuestionModel("Вам нравится наше приложение?"),
+            QuestionModel("Вы довольны своей работой?"),
+            QuestionModel("Сколько вы зарабатываете?")
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         lvProfessions.setOnItemClickListener { _, _, pos, _ ->
             Toast.makeText(this@MainActivity, professions[pos], Toast.LENGTH_SHORT).show()
             val intent = Intent(this@MainActivity, QuestionsActivity::class.java)
+            intent.putExtra(getString(R.string.QUESTIONS), questions);
             startActivity(intent)
         }
     }
